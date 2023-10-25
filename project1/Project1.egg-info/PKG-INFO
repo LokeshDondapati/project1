@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: Project1
+Version: 0.1.0
+Summary: Project1
+Home-page: https://github.com/your-username/your-repository
+Author: Lokesh Dondapati
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+
+# project1
+
