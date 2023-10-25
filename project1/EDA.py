@@ -1,52 +1,109 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datasummary import Datasummary
+
+# dataset url
 
 url = 'https://raw.githubusercontent.com/LokeshDondapati/project1/main/HIV_AIDS_Diagnoses_by_Neighborhood__Age_Group__and_Race_Ethnicity.csv'
-v=Datasummary(url)
-f=v.readdata(url)
+
+
 class EDA:
+    """
+            class to get data from url and to showcase data.
+            show Summary of statistics
+             stored in a DataFrame called "summary_stats."
+
+            Parameters:
+            - url (str): url of dataset."""
+
     def __init__(self):
-        self.data = f
+        self.url = url
+
+    def readdata(self, url):
+        """For loading dataset, datset was uploaded to GitHub and with the gitHub url all  the data is being fetched"""
+        data = pd.read_csv(self.url)
+        return data
 
     def statistics(self):
-        summary_stats_numeric = self.data.describe(include=['float64', 'int64'])
-        print(summary_stats_numeric)
+        """Summary statistics for dataframe are calculated with describe func"""
+        # Method readdata is called for data fetch
+        summary_stats = self.readdata(url).describe(include='all')
+        return summary_stats
 
-        summary_stats = self.data.describe(include='all')
-        print(summary_stats)
-    def graphical_analysis_matplotlib(self):
+    def graphical_analysis_matplotlib_year(self):
+        """
+            dimensions/size are given 8,6 and colour as skyblue for matplotlib histogram.
+
+            Graph axis:
+            - X: Year.
+            - Y: Frequency.
+
+            Returns:
+            Histogram of year.
+            """
         plt.figure(figsize=(8, 6))
-
-        plt.hist(self.data['YEAR'], bins=20, color='skyblue', edgecolor='black')
+        # Method readdata is used here for year
+        plt.hist(self.readdata(url)['YEAR'], bins=20, color='skyblue', edgecolor='black')
         plt.xlabel('YEAR')
         plt.ylabel('Frequency')
         plt.title('Histogram for YEAR')
-        plt.show()
-        plt.hist(self.data['AGE'], bins=10, color='skyblue', edgecolor='black')
+        result = plt.show()
+        return result
+
+    def graphical_analysis_matplotlib_age(self):
+        """
+                    dimensions/size are given 8,6 and colour as sky blue for matplotlib histogram.
+
+                    Graph axis:
+                    - X: age.
+                    - Y: Frequency.
+
+                    Returns:
+                    Histogram of age.
+                    """
+        plt.hist(self.readdata(url)['AGE'], bins=10, color='skyblue', edgecolor='black')
         plt.xlabel('AGE')
         plt.ylabel('Frequency')
         plt.title('Histogram for AGE')
-        plt.show()
-    def graphical_analysis_seaborn(self):
+        result = plt.show()
+        return result
+
+    def graphical_analysis_seaborn_year(self):
+        """
+                    dimensions/size are given 8,6 and colour as sky blue for seaborn histogram.
+
+                    Graph axis:
+                    - X: Year.
+                    - Y: Frequency.
+
+                    Returns:
+                    Histogram of year.
+                    """
         plt.figure(figsize=(8, 6))
 
-        sns.histplot(self.data['YEAR'], bins=30, color='blue', kde=True)
+        sns.histplot(self.readdata(url)['YEAR'], bins=30, color='blue', kde=True)
         plt.xlabel('YEAR')
         plt.ylabel('Frequency')
         plt.title('Histogram for YEAR')
-        plt.show()
-        sns.histplot(self.data['AGE'], bins=30, color='blue', kde=True)
+        result = plt.show()
+        return result
+
+    def graphical_analysis_seaborn_age(self):
+        """
+                    dimensions/size are given 8,6 and colour as sky blue for seaborn histogram.
+
+                    Graph axis:
+                    - X: age.
+                    - Y: Frequency.
+
+                    Returns:
+                    Histogram of age.
+                    """
+        sns.histplot(self.readdata(url)['AGE'], bins=30, color='blue', kde=True)
         plt.xlabel('AGE')
         plt.ylabel('Frequency')
         plt.title('Histogram for AGE')
-        plt.show()
+        result = plt.show()
+        return result
+        # return histogram
 
-
-
-
-if __name__ == "__main__":
-    output = EDA()
-    v = output.statistics()
-    x=output.graphical_analysis_seaborn()
